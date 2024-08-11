@@ -1,33 +1,55 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "deck.h"
 
-void print_card(struct card c){
+void print_card(struct Card c){
     char *s;
     char *v;
-    switch(c.s){
-        case clubs:    s = "clubs";    break;
-        case hearts:   s = "hearts";   break;
-        case spades:   s = "spades";   break;
-        case diamonds: s = "diamonds"; break;
-        case jokers:   s = "jokers"; break;
+    switch(c.suit){
+        case Clubs:    s = "clubs";    break;
+        case Hearts:   s = "hearts";   break;
+        case Spades:   s = "spades";   break;
+        case Diamonds: s = "diamonds"; break;
+        case Jokers:   s = "jokers"; break;
         default:       s = "ERROR: Not a possible suit";
     };
-    switch(c.v){
-        case two:   v = "two";   break;
-        case three: v = "three"; break;
-        case four:  v = "four";  break;
-        case five:  v = "five";  break;
-        case six:   v = "six";   break;
-        case seven: v = "seven"; break;
-        case eight: v = "eight"; break;
-        case nine:  v = "nine";  break;
-        case ten:   v = "ten";   break;
-        case jack:  v = "jack";  break;
-        case queen: v = "queen"; break;
-        case king:  v = "king";  break;
-        case ace:   v = "ace";   break;
-        case joker: v = "joker"; break;
+    switch(c.value){
+        case Two:   v = "two";   break;
+        case Three: v = "three"; break;
+        case Four:  v = "four";  break;
+        case Five:  v = "five";  break;
+        case Six:   v = "six";   break;
+        case Seven: v = "seven"; break;
+        case Eight: v = "eight"; break;
+        case Nine:  v = "nine";  break;
+        case Ten:   v = "ten";   break;
+        case Jack:  v = "jack";  break;
+        case Queen: v = "queen"; break;
+        case King:  v = "king";  break;
+        case Ace:   v = "ace";   break;
+        case Joker: v = "joker"; break;
         default:    v = "ERROR: Not a possible value";
     };
     printf("%s of %s", v, s);
+};
+
+struct Deck* deck_init(){
+    struct Deck *d;
+};
+
+void shuffle(struct Deck *d){
+
+};
+
+struct Card draw(struct Deck *d){
+
+};
+
+void add_node(struct Node *prev, struct Node *new){
+    new->next = prev->next;
+    prev->next = new;
+};
+
+void delete_node(struct Deck *d, struct Node *old){
+
 };

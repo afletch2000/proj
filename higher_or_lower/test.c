@@ -2,9 +2,9 @@
 #include "deck.h"
 
 int main(int argc, char *argv[]){
-    struct card c;
-    c.s = 2;
-    c.v = 4;
+    struct Card c;
+    c.suit = 2;
+    c.value = 4;
 
     printf("Card chosen is ");
     print_card(c);
