@@ -34,12 +34,13 @@ void print_card(struct Card c){
 struct Deck* deck_init(uint8_t include_jokers){
     struct Deck *d = malloc(sizeof(struct Deck));
     d->top = NULL;
-    uint8_t numcards;
+    int8_t numcards;
     for(numcards=51;numcards>=0;numcards--){
         struct Node *n = malloc(sizeof(struct Node));
         n->c.suit  = numcards/13;
         n->c.value = numcards%13;
         add_node_to_top(d,n);
+        d->numcards++;
     }
     if(include_jokers){
         for(numcards=0;numcards<2;numcards++){
@@ -47,6 +48,7 @@ struct Deck* deck_init(uint8_t include_jokers){
             n->c.suit  = Jokers;
             n->c.value = Joker;
             add_node_to_top(d,n);
+            d->numcards++;
         }
     }
     return d;
@@ -57,7 +59,10 @@ void shuffle(struct Deck *d){
 };
 
 struct Card draw(struct Deck *d){
-
+    struct Card c = d->top->c;
+    delete_node(d,d->top);
+    d->numcards--;
+    return c;
 };
 
 void add_node(struct Node *p, struct Node *n){
@@ -71,13 +76,13 @@ void add_node_to_top(struct Deck *d, struct Node *n){
 };
 
 void delete_node(struct Deck *d, struct Node *old){
-    struct Node *p = find_p_node(d,old);
     if(old == d->top){
         d->top = old->next;
     }
     else{
+        struct Node *p = find_p_node(d,old);
         p->next = old->next;
-    {
+    }
     free(old);
 };
 
@@ -85,7 +90,7 @@ struct Node* find_p_node(struct Deck *d, struct Node *n){
     struct Node *c = d->top;
     struct Node *p = d->top;
     while(c != n){
-        *p=c;
+        p=c;
         if(c->next){
             c=c->next;
         }
