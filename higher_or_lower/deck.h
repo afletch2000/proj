@@ -2,6 +2,8 @@
 #define DECK_H
 
 #include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 enum Suit {
     Clubs,
@@ -41,10 +43,13 @@ struct Deck {
 };
 
 void print_card(struct Card c);
-struct Deck* deck_init();
+struct Deck* deck_init(uint8_t);
 void shuffle(struct Deck*);
 struct Card draw(struct Deck*);
 void add_node(struct Node*, struct Node*);
+void add_node_to_top(struct Deck*, struct Node*);
 void delete_node(struct Deck*, struct Node*);
+struct Node* find_p_node(struct Deck*, struct Node*);
+uint8_t card_equal(struct Card, struct Card);
 
 #endif
