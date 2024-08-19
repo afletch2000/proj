@@ -8,5 +8,6 @@ int main(int argc, char *argv[]){
         print_card(draw(d));
         printf("\n");
     }
+    free(d);
     return 0;
 }

@@ -32,11 +32,11 @@ void print_card(struct Card c){
 };
 
 struct Deck* deck_init(uint8_t include_jokers){
-    struct Deck *d = malloc(sizeof(struct Deck));
+    struct Deck *d = calloc(1,sizeof(struct Deck));
     d->top = NULL;
     int8_t numcards;
     for(numcards=51;numcards>=0;numcards--){
-        struct Node *n = malloc(sizeof(struct Node));
+        struct Node *n = calloc(1,sizeof(struct Node));
         n->c.suit  = numcards/13;
         n->c.value = numcards%13;
         add_node_to_top(d,n);
@@ -44,7 +44,7 @@ struct Deck* deck_init(uint8_t include_jokers){
     }
     if(include_jokers){
         for(numcards=0;numcards<2;numcards++){
-            struct Node *n = malloc(sizeof(struct Node));
+            struct Node *n = calloc(1,sizeof(struct Node));
             n->c.suit  = Jokers;
             n->c.value = Joker;
             add_node_to_top(d,n);
